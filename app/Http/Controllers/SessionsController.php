@@ -31,7 +31,7 @@ class SessionsController extends Controller
 
     	if(Auth::attempt($credentials, $request->has('remenber'))){
     		session()->flash('success', '欢迎回来！');
-    		$fallback = route('users.show', '欢迎回来！');
+    		$fallback = route('users.show', Auth::user());
     		return redirect()->intended($fallback);
     	}else{
     		session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
